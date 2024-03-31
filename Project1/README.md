@@ -1,3 +1,9 @@
+.<img width="678" alt="Screenshot 2024-03-31 at 11 15 04 AM" src="https://github.com/asuezp/CSCE-4600/assets/47001273/48793c1a-c6e9-41ba-b33e-40704c62fe07">
+
+
+
+
+
 # Project 1: Process Scheduler
 
 ## Description
