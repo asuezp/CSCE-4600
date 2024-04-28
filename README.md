@@ -1,3 +1,18 @@
-# CSCE-4600
-<img width="678" alt="Screenshot 2024-03-31 at 11 15 04 AM" src="https://github.com/asuezp/CSCE-4600/assets/47001273/eeed4875-0c92-40e2-9db0-da72c7888823">
-<img width="940" alt="Screenshot 2024-03-31 at 12 21 23 PM" src="https://github.com/asuezp/CSCE-4600/assets/47001273/fd798561-1287-4e82-a4e7-a3941defd1f9">
+# Project Files CSCE 4600
+[![golangci-lint](https://github.com/jh125486/CSCE4600/actions/workflows/golangci-lint.yml/badge.svg?branch=main)](https://github.com/jh125486/CSCE4600/actions/workflows/golangci-lint.yml)
+![Coverage](https://img.shields.io/badge/Coverage-65.0%25-yellow)
+
+## Operating Systems
+
+Concepts in operating system analysis and design. General topics of process, resource and file management are presented and analyzed in the context of different system architectures and performance constraints.
+
+## [Project 1: Process Scheduler](https://github.com/jh125486/CSCE4600/tree/main/Project1)
+
+
+You can't take an operating systems class without programming a process scheduler.  It's against the Geneva code or something.
+Design a program that implements several different CPU scheduling algorithms.
+
+
+## [Project 2: Shell Builtins](https://github.com/jh125486/CSCE4600/tree/main/Project2)
+
+A twist on a classic "build your own shell". The *very* basic shell is already written, but you will choose five (5) shell builtins (or shell-adjacent) commands to rewrite into Go, and integrate into the Go shell.
