@@ -3,7 +3,7 @@ package builtins
 import (
     "fmt"
     "io/ioutil"
-
+    "os"
 )
 
 func ListFiles(args ...string) error {
@@ -16,6 +16,10 @@ func ListFiles(args ...string) error {
 
     files, err := ioutil.ReadDir(path)
     if err != nil {
+        // Check if the error is because the directory does not exist
+        if os.IsNotExist(err) {
+            return fmt.Errorf("directory does not exist: %s", path)
+        }
         return err
     }
 
