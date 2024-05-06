@@ -1,10 +1,10 @@
 package builtins_test
 
 import (
-	"errors"
-	"github.com/asuezp/CSCE-4600/Project2/builtins"
 	"os"
 	"testing"
+
+	"github.com/asuezp/CSCE-4600/Project2/builtins"
 )
 
 func TestListFiles(t *testing.T) {
@@ -22,7 +22,7 @@ func TestListFiles(t *testing.T) {
 	tests := []struct {
 		name    string
 		args    args
-		wantErr error
+		wantErr bool
 	}{
 		{
 			name: "list files in current directory",
@@ -33,20 +33,15 @@ func TestListFiles(t *testing.T) {
 		{
 			name:    "list files in non-existent directory",
 			args:    args{args: []string{"/non-existent"}},
-			wantErr: errors.New("stat /non-existent: no such file or directory"),
+			wantErr: true,
 		},
 		// Add more test cases as needed
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			err := builtins.ListFiles(tt.args.args...)
-			if tt.wantErr != nil {
-				if !errors.Is(err, tt.wantErr) {
-					t.Fatalf("ListFiles() error = %v, wantErr %v", err, tt.wantErr)
-				}
-				return
-			} else if err != nil {
-				t.Fatalf("ListFiles() unexpected error: %v", err)
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("ListFiles() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
 	}
