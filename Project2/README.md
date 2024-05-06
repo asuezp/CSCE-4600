@@ -1,3 +1,12 @@
+
+<img width="1055" alt="Screenshot 2024-05-05 at 10 39 52 PM" src="https://github.com/asuezp/CSCE-4600/assets/47001273/4be89700-90ba-4d05-aa1e-63ca661c1234">
+
+
+<img width="1073" alt="Screenshot 2024-05-05 at 10 40 10 PM" src="https://github.com/asuezp/CSCE-4600/assets/47001273/56c9ab94-5311-4fd9-aecc-45abace7d52f">
+
+
+
+
 # Project 2: Shell Builtins
 
 ## Description
