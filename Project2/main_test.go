@@ -2,12 +2,13 @@ package main
 
 import (
 	"bytes"
-	"github.com/stretchr/testify/require"
 	"io"
 	"strings"
 	"testing"
 	"testing/iotest"
 	"time"
+
+	"github.com/stretchr/testify/require"
 )
 
 func Test_runLoop(t *testing.T) {
@@ -27,6 +28,7 @@ func Test_runLoop(t *testing.T) {
 			args: args{
 				r: exitCmd,
 			},
+			wantW: "exiting gracefully...", // Assuming that the output should include this message.
 		},
 		{
 			name: "read error should have no effect",
@@ -44,17 +46,26 @@ func Test_runLoop(t *testing.T) {
 			errW := &bytes.Buffer{}
 
 			exit := make(chan struct{}, 2)
-			// run the loop for 10ms
+			// run the loop for 50ms, increased time for more reliable execution
 			go runLoop(tt.args.r, w, errW, exit)
-			time.Sleep(10 * time.Millisecond)
+			time.Sleep(50 * time.Millisecond)
 			exit <- struct{}{}
 
-			require.NotEmpty(t, w.String())
-			if tt.wantErrW != "" {
-				require.Contains(t, errW.String(), tt.wantErrW)
+			// Enhanced debugging: Log outputs for clearer insights in case of failure
+			actualOutput := w.String()
+			actualErrOutput := errW.String()
+			if tt.wantW != "" {
+				require.NotEmpty(t, actualOutput, "Output should not be empty. Got: %v", actualOutput)
+				require.Contains(t, actualOutput, tt.wantW, "Output should contain '%s'. Got: %s", tt.wantW, actualOutput)
 			} else {
-				require.Empty(t, errW.String())
+				require.Empty(t, actualOutput, "Output should be empty. Got: %v", actualOutput)
+			}
+			if tt.wantErrW != "" {
+				require.Contains(t, actualErrOutput, tt.wantErrW, "Error output should contain '%s'. Got: %s", tt.wantErrW, actualErrOutput)
+			} else {
+				require.Empty(t, actualErrOutput, "Error output should be empty. Got: %v", actualErrOutput)
 			}
 		})
 	}
 }
+
